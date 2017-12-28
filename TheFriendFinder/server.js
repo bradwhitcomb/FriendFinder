@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 //   res.end(JSON.stringify(req.body, null, 2))
 // })
 
-//require("./app/routing/apiRoutes")(app);
+require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
 
 // =============================================================================

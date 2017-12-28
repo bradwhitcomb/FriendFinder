@@ -4,23 +4,26 @@
 		<meta charset="UTF-8">
 		<title>Friend Survey</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<div class="container">
 			<h2>Survey Questions</h2>
 			<br>
 			<h3><stong>About You</stong></h3>
-			<h4>name required</h4>
-			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1"></span>
-				<input type="text" class="form-control"  aria-describedby="basic-addon1">
-			</div>
-			<h4>Link to photo image (required)</h4>
-			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1"></span>
-				<input type="text" class="form-control" aria-describedby="basic-addon1">
-			</div>
-			<form role="form">
+			<form role="form" method="Post">
+				<h4>name required</h4>
+				<div class="input-group">
+					<span class="input-group-addon"></span>
+					<input type="text" class="form-control"  aria-describedby="basic-addon1" id="name">
+				</div>
+				<h4>Link to photo image (required)</h4>
+				<div class="input-group">
+					<span class="input-group-addon"> </span>
+					<input type="url" class="form-control" aria-describedby="basic-addon1" id="photo">
+				</div>
+				
 				<div><h3>Question One</h3>
 					<h4>When I go shopping I always find something to buy.</h4>
 					<div class="dropdown">
@@ -157,3 +160,37 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+	$("#submit").on("click", function(event) {
+event.preventDefault();
+// Here we grab the form elements
+var newSurvey = {
+customerName: $("#name").val().trim(),
+customerPhoto: $("#photo").val().trim(),
+customerScore: [parseFloat($("#q1").val().trim()),
+				parseFloat($("#q2").val().trim()),
+				parseFloat($("#q3").val().trim()),
+				parseFloat($("#q4").val().trim()),
+				parseFloat($("#q5").val().trim()),
+				parseFloat($("#q6").val().trim()),
+				parseFloat($("#q7").val().trim()),
+				parseFloat($("#q8").val().trim()),
+				parseFloat($("#q9").val().trim()),
+				parseFloat($("#q10").val().trim())
+				],
+
+};
+console.log(newSurvey);
+
+
+// let newSurveySum = (newSurvey.customerScore.reduce(reducer));
+// console.log("new survey score = " + newSurveySum);
+// This line is the magic. It"s very similar to the standard ajax function we used.
+// Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+// The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+// depending on if a tables is available or not.
+$.post("/api/survey", newSurvey,
+  function(data) {
+//    
+});
+</script>
