@@ -15,4 +15,7 @@
     "save": "^2.3.2",
     "simple-popup-modal": "^1.1.0"
   }
+  "scripts":{
+    "start": "node server.js"
+  }
 }
