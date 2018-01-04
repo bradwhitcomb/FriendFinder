@@ -32,11 +32,13 @@ module.exports = function(app) {
 
   app.get("/api/survey", function(req, res) {
     res.json(surveyData);
+    res.end();
   });
 
   app.post("/api/survey", function(req, res) {
-    res.json(surveyData);
+    res.json(req.body);
     console.log(surveyData);
+
   });
   // API POST Requests
   // Below code handles when a user submits a form and thus submits data to the server.

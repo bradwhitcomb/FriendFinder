@@ -25,7 +25,7 @@
 				</div>
 				
 				<div><h3>Question One</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4> I prefer Orlando over Annaheim.</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q1" type="number">
 							<option value="0">make a selection</option>
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div><h3>Question Two</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4>The Disney Parks are for grown-ups as well as kids.</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q2" type="number">
 							<option value="0">make a selection</option>
@@ -51,7 +51,7 @@
 					</div>
 				</div>
 				<div><h3>Question Three</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4>If I could go on only one cruise it would be on a Disney ship.</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q3" type="number">
 							<option value="0">make a selection</option>
@@ -64,7 +64,7 @@
 					</div>
 				</div>
 				<div><h3>Question Four</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4>The three little pigs should be slaughtered and turned into bacon.</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q4" type="number">
 							<option value="0">make a selection</option>
@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<div><h3>Question Five</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4>I'd rather spend time with Snow White than the seven dwarfs.</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q5" type="number">
 							<option value="0">make a selection</option>
@@ -90,7 +90,7 @@
 					</div>
 				</div>
 				<div><h3>Question Six</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4>Mary Poppins is one of the best movies ever made.</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q6" type="number">
 							<option value="0">make a selection</option>
@@ -103,7 +103,7 @@
 					</div>
 				</div>
 				<div><h3>Question Seven</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4>I'd rather visit Epcot than Europe.</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q7" type="number">
 							<option value="0">make a selection</option>
@@ -116,7 +116,7 @@
 					</div>
 				</div>
 				<div><h3>Question Eight</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4> The Swiss Family Robinson treehouse is way cooler than than the Disney Castle.</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q8" type="number">
 							<option value="0">make a selection</option>
@@ -129,7 +129,7 @@
 					</div>
 				</div>
 				<div><h3>Question Nine</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4>Forget "Pirates of the Carribean" I'd rather float down "It's a Small World".</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q9" type="number">
 							<option value="0">make a selection</option>
@@ -142,7 +142,7 @@
 					</div>
 				</div>
 				<div><h3>Question Ten</h3>
-					<h4>When I go shopping I always find something to buy.</h4>
+					<h4>The Disney Parks really are the "the happiest places on earth".</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q10" type="number">
 							<option value="0">make a selection</option>
@@ -161,28 +161,27 @@
 	</body>
 </html>
 <script type="text/javascript">
+
+
 	$("#submit").on("click", function(event) {
 event.preventDefault();
 // Here we grab the form elements
-var newSurvey = {
-customerName: $("#name").val().trim(),
-customerPhoto: $("#photo").val().trim(),
-customerScore: [parseFloat($("#q1").val().trim()),
-				parseFloat($("#q2").val().trim()),
-				parseFloat($("#q3").val().trim()),
-				parseFloat($("#q4").val().trim()),
-				parseFloat($("#q5").val().trim()),
-				parseFloat($("#q6").val().trim()),
-				parseFloat($("#q7").val().trim()),
-				parseFloat($("#q8").val().trim()),
-				parseFloat($("#q9").val().trim()),
-				parseFloat($("#q10").val().trim())
-				],
-
-};
-console.log(newSurvey);
-
-
+	var newSurvey = {
+	customerName: $("#name").val().trim(),
+	customerPhoto: $("#photo").val().trim(),
+	customerScore: [parseFloat($("#q1").val().trim()),
+					parseFloat($("#q2").val().trim()),
+					parseFloat($("#q3").val().trim()),
+					parseFloat($("#q4").val().trim()),
+					parseFloat($("#q5").val().trim()),
+					parseFloat($("#q6").val().trim()),
+					parseFloat($("#q7").val().trim()),
+					parseFloat($("#q8").val().trim()),
+					parseFloat($("#q9").val().trim()),
+					parseFloat($("#q10").val().trim())
+					],
+	};
+//console.log("THIS IS NEW SURVEY.customerScore " + newSurvey.customerScore);
 // let newSurveySum = (newSurvey.customerScore.reduce(reducer));
 // console.log("new survey score = " + newSurveySum);
 // This line is the magic. It"s very similar to the standard ajax function we used.
@@ -190,7 +189,52 @@ console.log(newSurvey);
 // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
 // depending on if a tables is available or not.
 $.post("/api/survey", newSurvey,
-  function(data) {
-//    
+function(data) {
+	
+console.log(data);
+});
+//function friendQuery() {
+// Here we get the location of the root page.
+// We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
+var currentURL = window.location.origin;
+// The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+$.ajax({ url: currentURL + "/api/survey", method: "GET" })
+.done(function(friendsData) {
+
+var index = 0;
+var lowestScore = 50;
+//console.log(friendsData);
+for (var i = 0; i < friendsData.length; i ++){
+	var currentScore = 0
+	
+	
+
+	//console.log("THE friends score is " + friendsData[i].score);
+	for (var x = 0; x < friendsData[i].score.length; x ++){
+
+		
+	 currentScore += Math.abs(newSurvey.customerScore[x] - friendsData[i].score[x]);
+	 
+	}
+	//console.log(currentScore);
+	if (currentScore < lowestScore ){
+	 	//console.log("it works");
+	 	lowestScore = currentScore;
+	 	index = i;
+	 }
+	// console.log(currentScore);
+	// console.log(lowestScore);
+	// console.log(index);
+	
+}
+  console.log(friendsData[index].name);
+
+
+
+
+
+});
+// }
+// friendQuery();
 });
 </script>
