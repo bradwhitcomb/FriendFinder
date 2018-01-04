@@ -112,7 +112,7 @@ let surveyArray = [
             ]      
       },
       {
-      name: 'minneyMouse',
+      name: 'Minney Mouse',
       photo: 'http://kb4images.com/Minnie-Mouse-Images/number-121663.html',
       score: [
       1,

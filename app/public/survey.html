@@ -25,7 +25,7 @@
 				</div>
 				
 				<div><h3>Question One</h3>
-					<h4> I prefer Orlando over Annaheim.</h4>
+					<h4> Belle and the Beast make the perfect couple.</h4>
 					<div class="dropdown">
 						<select class="chosen-select" id="q1" type="number">
 							<option value="0">make a selection</option>
@@ -153,7 +153,7 @@
 							<option value="5">5 (Strongly Agree)</option>
 						</select>
 					</div>
-				</div>
+				</div> 
 				<button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
 				Submit</button>
 			</form>
@@ -165,7 +165,6 @@
 
 	$("#submit").on("click", function(event) {
 event.preventDefault();
-// Here we grab the form elements
 	var newSurvey = {
 	customerName: $("#name").val().trim(),
 	customerPhoto: $("#photo").val().trim(),
@@ -181,60 +180,33 @@ event.preventDefault();
 					parseFloat($("#q10").val().trim())
 					],
 	};
-//console.log("THIS IS NEW SURVEY.customerScore " + newSurvey.customerScore);
-// let newSurveySum = (newSurvey.customerScore.reduce(reducer));
-// console.log("new survey score = " + newSurveySum);
-// This line is the magic. It"s very similar to the standard ajax function we used.
-// Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-// The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-// depending on if a tables is available or not.
-$.post("/api/survey", newSurvey,
-function(data) {
-	
-console.log(data);
-});
-//function friendQuery() {
-// Here we get the location of the root page.
-// We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
+
+		$.post("/api/survey", newSurvey,
+		function(data) {
+			
+		console.log(data);
+		});
+
 var currentURL = window.location.origin;
-// The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-$.ajax({ url: currentURL + "/api/survey", method: "GET" })
-.done(function(friendsData) {
 
-var index = 0;
-var lowestScore = 50;
-//console.log(friendsData);
-for (var i = 0; i < friendsData.length; i ++){
-	var currentScore = 0
-	
-	
+	$.ajax({ url: currentURL + "/api/survey", method: "GET" })
+	.done(function(friendsData) {
+	var index = 0;
+	var lowestScore = 50;
 
-	//console.log("THE friends score is " + friendsData[i].score);
-	for (var x = 0; x < friendsData[i].score.length; x ++){
-
-		
-	 currentScore += Math.abs(newSurvey.customerScore[x] - friendsData[i].score[x]);
-	 
+	for (var i = 0; i < friendsData.length; i ++){
+		var currentScore = 0
+		for (var x = 0; x < friendsData[i].score.length; x ++){
+		 currentScore += Math.abs(newSurvey.customerScore[x] - friendsData[i].score[x]);
+		}
+		if (currentScore < lowestScore ){
+		 	lowestScore = currentScore;
+		 	index = i;
+		 }		
 	}
-	//console.log(currentScore);
-	if (currentScore < lowestScore ){
-	 	//console.log("it works");
-	 	lowestScore = currentScore;
-	 	index = i;
-	 }
-	// console.log(currentScore);
-	// console.log(lowestScore);
-	// console.log(index);
-	
-}
-  console.log(friendsData[index].name);
+	  alert("Hello " + newSurvey.customerName +"!!" + " Your special Disney friend is " + friendsData[index].name);
+	  
 
-
-
-
-
-});
-// }
-// friendQuery();
+	});
 });
 </script>
